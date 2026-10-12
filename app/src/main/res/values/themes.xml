@@ -1,9 +1,19 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MiTiempoSemanal" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.MiTiempoSemanal" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/morado</item>
+        <item name="colorPrimaryVariant">@color/morado_oscuro</item>
+        <item name="colorOnPrimary">@color/texto</item>
+        <item name="colorSecondary">@color/rojo_ojos</item>
+        <item name="colorOnSecondary">@color/texto</item>
+        <item name="colorSurface">@color/superficie</item>
+        <item name="colorOnSurface">@color/texto</item>
+        <item name="colorOnBackground">@color/texto</item>
+        <item name="android:colorBackground">@color/fondo</item>
+        <item name="android:textColorPrimary">@color/texto</item>
+        <item name="android:textColorSecondary">@color/texto_suave</item>
+        <item name="android:textColorHint">@color/texto_suave</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
-
-    <style name="Theme.MiTiempoSemanal" parent="Base.Theme.MiTiempoSemanal" />
 </resources>

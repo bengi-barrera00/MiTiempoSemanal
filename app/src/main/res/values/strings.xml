@@ -1,3 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MiTiempoSemanal</string>
+    <string name="autor_version">Bengi Barrera · v%1$s (%2$d)</string>
+    <string name="subtitulo">Organiza tu semana</string>
+
+    <string name="categorias">Categorías</string>
+    <string name="tareas">Tareas</string>
+    <string name="categorias_desc">Estudio, trabajo, descanso, ocio y las tuyas</string>
+    <string name="tareas_desc">Tus actividades frecuentes, cada una con su categoría</string>
+    <string name="volver">Volver</string>
+
+    <string name="nueva_categoria">Nueva categoría</string>
+    <string name="editar_categoria">Editar categoría</string>
+    <string name="nueva_tarea">Nueva tarea</string>
+    <string name="editar_tarea">Editar tarea</string>
+    <string name="nombre">Nombre</string>
+    <string name="categoria">Categoría</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+
+    <string name="err_nombre">El nombre es obligatorio</string>
+    <string name="err_categoria">Elige una categoría</string>
+    <string name="err_cat_existe">Esa categoría ya existe</string>
+    <string name="err_tarea_existe">Esa tarea ya existe</string>
+    <string name="primero_categoria">Primero crea una categoría</string>
+
+    <string name="confirmar_eliminar_cat">¿Eliminar la categoría «%1$s»?</string>
+    <string name="confirmar_eliminar_tarea">¿Eliminar la tarea «%1$s»?</string>
+    <string name="cat_con_tareas">No se puede eliminar «%1$s»: tiene %2$d tarea(s)</string>
+    <string name="sin_categorias">Aún no hay categorías</string>
+    <string name="sin_tareas">Aún no hay tareas. Toca + para crear una</string>
+    <string name="tareas_cantidad">%1$d tarea(s)</string>
 </resources>

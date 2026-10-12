@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="fondo">#1F1A33</color>
+    <color name="superficie">#2B2444</color>
+    <color name="superficie_alta">#382E58</color>
+    <color name="morado">#7C5CC4</color>
+    <color name="morado_oscuro">#5E4A9E</color>
+    <color name="rojo_ojos">#E8454F</color>
+    <color name="texto">#F1ECFA</color>
+    <color name="texto_suave">#B9ADD6</color>
+    <color name="borde">#4B3F78</color>
 </resources>
