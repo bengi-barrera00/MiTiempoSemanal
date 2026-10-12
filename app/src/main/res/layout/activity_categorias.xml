@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_vertical" android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnAtras"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_marginStart="8dp" android:background="@null"
+            android:contentDescription="@string/volver" android:src="@drawable/ic_atras" />
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:padding="12dp" android:text="@string/categorias"
+            android:textColor="@color/texto" android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/borde" />
+
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCategorias"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:clipToPadding="false" android:padding="16dp"
+            android:paddingBottom="96dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <TextView
+            android:id="@+id/tvVacio"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_gravity="center" android:text="@string/sin_categorias"
+            android:textColor="@color/texto_suave" android:visibility="gone" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabNueva"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end" android:layout_margin="20dp"
+            android:contentDescription="@string/nueva_categoria"
+            app:backgroundTint="@color/morado" app:srcCompat="@drawable/ic_mas"
+            app:tint="@color/texto" />
+    </FrameLayout>
+</LinearLayout>

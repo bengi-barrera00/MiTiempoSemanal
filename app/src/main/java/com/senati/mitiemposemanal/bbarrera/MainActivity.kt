@@ -1,20 +1,32 @@
 package com.senati.mitiemposemanal.bbarrera
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.senati.mitiemposemanal.bbarrera.databinding.ActivityMainBinding
+import com.senati.mitiemposemanal.bbarrera.util.Ui
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var b: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        Ui.edgeToEdge(this)
+        b = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(b.root)
+        Ui.ajustar(b.root)
+
+        // "Bengi Barrera · v0.1.0 (1)"
+        b.tvAutorVersion.text = getString(
+            R.string.autor_version, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE
+        )
+
+        b.cardCategorias.setOnClickListener {
+            startActivity(Intent(this, CategoriasActivity::class.java))
         }
+        b.cardTareas.setOnClickListener {
+            startActivity(Intent(this, TareasActivity::class.java))
+       }
     }
 }
