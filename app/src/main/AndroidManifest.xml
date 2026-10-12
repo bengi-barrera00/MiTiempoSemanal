@@ -27,6 +27,10 @@
         <activity
             android:name=".TareasActivity"
             android:exported="false" />
+        <activity
+            android:name=".EventosActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

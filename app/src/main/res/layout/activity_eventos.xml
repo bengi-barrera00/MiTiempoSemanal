@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_vertical" android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/btnAtras"
+            android:layout_width="48dp" android:layout_height="48dp"
+            android:layout_marginStart="8dp" android:background="@null"
+            android:contentDescription="@string/volver" android:src="@drawable/ic_atras" />
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:padding="12dp" android:text="@string/eventos"
+            android:textColor="@color/texto" android:textSize="22sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/borde" />
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilTarea" style="@style/Campo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:hint="@string/tarea">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTarea"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:inputType="textCapSentences" android:maxLength="60"
+                android:textColor="@color/texto" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvCategoria"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="4dp" android:layout_marginTop="6dp"
+            android:textColor="@color/morado" android:textStyle="bold"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:orientation="horizontal">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIniciar" style="@style/BotonPrimario"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="@string/iniciar" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFinalizar" style="@style/BotonPrimario"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" android:layout_weight="1"
+                android:text="@string/finalizar" />
+        </LinearLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardEnCurso"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:visibility="gone"
+            app:cardBackgroundColor="@color/superficie" app:cardCornerRadius="16dp"
+            app:cardElevation="0dp" app:strokeColor="@color/morado" app:strokeWidth="1dp">
+            <LinearLayout
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView
+                    android:id="@+id/tvEnCurso"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textColor="@color/texto" android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/tvCronometro"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" android:text="00:00:00"
+                    android:textColor="@color/morado" android:textSize="32sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvLista"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp" android:text="@string/eventos_registrados"
+        android:textColor="@color/texto_suave" android:textStyle="bold" />
+
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEventos"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:clipToPadding="false" android:padding="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSugerencias"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:clipToPadding="false" android:padding="16dp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <TextView
+            android:id="@+id/tvVacio"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_gravity="center" android:text="@string/sin_eventos"
+            android:textColor="@color/texto_suave" android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

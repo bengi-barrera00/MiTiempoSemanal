@@ -28,5 +28,8 @@ class MainActivity : AppCompatActivity() {
         b.cardTareas.setOnClickListener {
             startActivity(Intent(this, TareasActivity::class.java))
        }
+        b.cardEventos.setOnClickListener {
+            startActivity(Intent(this, EventosActivity::class.java))
+        }
     }
 }

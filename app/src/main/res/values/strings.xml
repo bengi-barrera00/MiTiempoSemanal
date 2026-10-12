@@ -35,4 +35,18 @@
     <string name="sin_categorias">Aún no hay categorías</string>
     <string name="sin_tareas">Aún no hay tareas. Toca + para crear una</string>
     <string name="tareas_cantidad">%1$d tarea(s)</string>
+
+    <string name="eventos">Eventos</string>
+    <string name="eventos_desc">Registra cuánto tiempo dedicas a cada tarea</string>
+    <string name="tarea">Tarea</string>
+    <string name="iniciar">Iniciar</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="coincidencias">Coincidencias</string>
+    <string name="eventos_registrados">Eventos registrados</string>
+    <string name="sin_eventos">Aún no hay eventos. Escribe una tarea y pulsa Iniciar</string>
+    <string name="categoria_de">Categoría: %1$s</string>
+    <string name="en_curso">En curso: %1$s · %2$s\nInicio: %3$s</string>
+    <string name="en_curso_desde">En curso desde %1$s</string>
+    <string name="elige_categoria">Elige una categoría para «%1$s»</string>
+    <string name="err_tarea">Escribe o elige una tarea</string>
 </resources>
