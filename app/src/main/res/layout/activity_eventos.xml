@@ -22,6 +22,31 @@
         android:layout_width="match_parent" android:layout_height="1dp"
         android:background="@color/borde" />
 
+    <!-- Sprint 3: panel semanal (las filas se crean desde Kotlin) -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp" android:layout_marginTop="12dp"
+        app:cardBackgroundColor="@color/superficie" app:cardCornerRadius="16dp"
+        app:cardElevation="0dp" app:strokeColor="@color/borde" app:strokeWidth="1dp">
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="14dp">
+            <TextView
+                android:id="@+id/tvSemana"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textColor="@color/texto" android:textSize="16sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/sobre_168" android:textColor="@color/texto_suave"
+                android:textSize="12sp" />
+            <LinearLayout
+                android:id="@+id/llPanel"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp" android:orientation="vertical" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
     <LinearLayout
         android:layout_width="match_parent" android:layout_height="wrap_content"
         android:orientation="vertical" android:padding="16dp">

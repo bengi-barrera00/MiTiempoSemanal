@@ -15,3 +15,4 @@ data class Evento(
     val fin: String? = null,
     val segundos: Long? = null
 )
+data class ResumenCategoria(val id: Int, val nombre: String, val segundos: Long)

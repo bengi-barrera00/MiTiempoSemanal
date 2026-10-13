@@ -15,12 +15,15 @@ import com.senati.mitiemposemanal.bbarrera.data.CategoriaDao
 import com.senati.mitiemposemanal.bbarrera.data.EventoDao
 import com.senati.mitiemposemanal.bbarrera.data.TareaDao
 import com.senati.mitiemposemanal.bbarrera.databinding.ActivityEventosBinding
+import com.senati.mitiemposemanal.bbarrera.databinding.ItemPanelBinding
 import com.senati.mitiemposemanal.bbarrera.model.Evento
 import com.senati.mitiemposemanal.bbarrera.model.Fila
 import com.senati.mitiemposemanal.bbarrera.model.Tarea
 import com.senati.mitiemposemanal.bbarrera.util.Tiempo
 import com.senati.mitiemposemanal.bbarrera.util.Ui
 import java.time.Duration
+import java.util.Locale
+import kotlin.math.roundToInt
 
 class EventosActivity : AppCompatActivity() {
 
@@ -37,6 +40,7 @@ class EventosActivity : AppCompatActivity() {
     private var elegida: Tarea? = null
     private var poniendoTexto = false
 
+    // Cronómetro del evento en curso: se actualiza cada segundo
     private val handler = Handler(Looper.getMainLooper())
     private val reloj = object : Runnable {
         override fun run() {
@@ -158,7 +162,7 @@ class EventosActivity : AppCompatActivity() {
     private fun finalizar() {
         val e = enCurso ?: return
         eventoDao.finalizar(e)
-        refrescar()
+        refrescar()   // Sprint 3: aquí también se actualiza el panel semanal
     }
 
 
@@ -179,11 +183,45 @@ class EventosActivity : AppCompatActivity() {
         habilitar(b.btnIniciar, e == null)
         habilitar(b.btnFinalizar, e != null)
 
+        // El cronómetro corre solo mientras hay un evento en curso
         handler.removeCallbacks(reloj)
         if (e != null) iniciarReloj()
 
+        cargarPanel()   // Sprint 3
         mostrarLista()
     }
+
+    // ---------- Sprint 3, HU-06: panel semanal ----------
+
+    private fun cargarPanel() {
+        b.tvSemana.text = getString(R.string.semana, Tiempo.rangoSemana())
+        b.llPanel.removeAllViews()
+
+        // Una fila por cada categoría que exista (se crean por código)
+        var registrados = 0L
+        eventoDao.resumenSemana().forEach {
+            registrados += it.segundos
+            agregarFila(it.nombre, it.segundos, R.color.morado)
+        }
+
+        // Horas de la semana que no tienen eventos
+        val libres = (Tiempo.SEMANA_SEG - registrados).coerceAtLeast(0)
+        agregarFila(getString(R.string.sin_registrar), libres, R.color.texto_suave)
+    }
+
+    private fun agregarFila(nombre: String, segundos: Long, color: Int) {
+        val f = ItemPanelBinding.inflate(layoutInflater, b.llPanel, false)
+        // Porcentaje = minutos de la categoría ÷ 10 080 × 100 (sobre 168 horas)
+        val porcentaje = segundos * 100.0 / Tiempo.SEMANA_SEG
+        f.tvNombre.text = nombre
+        f.tvValor.text = "${Tiempo.duracion(segundos)} · ${String.format(Locale.US, "%.1f", porcentaje)} %"
+        f.pb.max = 1000
+        f.pb.progress = (porcentaje * 10).roundToInt()
+        f.pb.setIndicatorColor(getColor(color))
+        b.llPanel.addView(f.root)
+    }
+
+    // ---------------------------------------------------
 
     private fun mostrarLista() {
         val buscando = sugerencias.isNotEmpty()

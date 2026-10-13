@@ -1,17 +1,31 @@
 package com.senati.mitiemposemanal.bbarrera.util
 
+import java.time.DayOfWeek
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.time.temporal.TemporalAdjusters
 
 object Tiempo {
     private val ISO = DateTimeFormatter.ISO_LOCAL_DATE_TIME
     private val VISTA = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
+    private val DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy")
+
+    const val SEMANA_SEG = 168L * 3600
 
     fun ahora(): LocalDateTime = LocalDateTime.now().withNano(0)
 
     fun guardar(f: LocalDateTime): String = f.format(ISO)
     fun leer(s: String): LocalDateTime = LocalDateTime.parse(s, ISO)
     fun mostrar(f: LocalDateTime): String = f.format(VISTA)
+
+    fun inicioSemana(): LocalDateTime =
+        LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).atStartOfDay()
+
+    fun rangoSemana(): String {
+        val lunes = inicioSemana().toLocalDate()
+        return "${lunes.format(DIA)} – ${lunes.plusDays(6).format(DIA)}"
+    }
 
     fun duracion(seg: Long): String {
         val h = seg / 3600
