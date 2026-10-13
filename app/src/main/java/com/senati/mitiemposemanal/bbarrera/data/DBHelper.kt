@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelper(ctx: Context) : SQLiteOpenHelper(ctx, "mitiempo.db", null, 2) {
+class DBHelper(ctx: Context) : SQLiteOpenHelper(ctx, "mitiempo.db", null, 3) {
 
     override fun onConfigure(db: SQLiteDatabase) {
         super.onConfigure(db)
@@ -28,10 +28,12 @@ class DBHelper(ctx: Context) : SQLiteOpenHelper(ctx, "mitiempo.db", null, 2) {
             db.execSQL("INSERT INTO categoria(nombre) VALUES(?)", arrayOf(it))
         }
         crearTablaEvento(db)
+        crearTablaReporte(db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         if (oldVersion < 2) crearTablaEvento(db)
+        if (oldVersion < 3) crearTablaReporte(db)
     }
 
     private fun crearTablaEvento(db: SQLiteDatabase) {
@@ -43,6 +45,19 @@ class DBHelper(ctx: Context) : SQLiteOpenHelper(ctx, "mitiempo.db", null, 2) {
                 fin TEXT,
                 segundos INTEGER,
                 FOREIGN KEY(id_tarea) REFERENCES tarea(id) ON DELETE CASCADE)"""
+        )
+    }
+
+    private fun crearTablaReporte(db: SQLiteDatabase) {
+        db.execSQL(
+            """CREATE TABLE IF NOT EXISTS reporte(
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                semana TEXT NOT NULL,
+                id_categoria INTEGER NOT NULL,
+                segundos INTEGER NOT NULL,
+                porcentaje REAL NOT NULL,
+                UNIQUE(semana, id_categoria),
+                FOREIGN KEY(id_categoria) REFERENCES categoria(id) ON DELETE CASCADE)"""
         )
     }
 }

@@ -53,4 +53,10 @@
     <string name="semana">Semana %1$s</string>
     <string name="sobre_168">Porcentaje sobre las 168 horas de la semana</string>
     <string name="sin_registrar">Sin registrar</string>
+
+    <string name="reportes">Reportes</string>
+    <string name="reportes_desc">Revisa cómo usaste tu tiempo en semanas pasadas</string>
+    <string name="sin_reportes">Aún no hay reportes</string>
+    <string name="elige_semana">Elige una semana</string>
+    <string name="eventos_semana">Eventos de la semana</string>
 </resources>

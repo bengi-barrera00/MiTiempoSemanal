@@ -3,10 +3,12 @@ package com.senati.mitiemposemanal.bbarrera.data
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import com.senati.mitiemposemanal.bbarrera.model.ResumenCategoria
 import com.senati.mitiemposemanal.bbarrera.model.Evento
+import com.senati.mitiemposemanal.bbarrera.model.ResumenCategoria
 import com.senati.mitiemposemanal.bbarrera.util.Tiempo
 import java.time.Duration
+import java.time.LocalDate
+import java.time.LocalDateTime
 
 class EventoDao(ctx: Context) {
     private val helper = DBHelper(ctx)
@@ -56,8 +58,7 @@ class EventoDao(ctx: Context) {
         helper.writableDatabase.update("evento", v, "id = ?", arrayOf(e.id.toString()))
     }
 
-    fun resumenSemana(): List<ResumenCategoria> {
-        val lunes = Tiempo.inicioSemana()
+    fun resumenSemana(lunes: LocalDateTime = Tiempo.inicioSemana()): List<ResumenCategoria> {
         val desde = Tiempo.guardar(lunes)
         val hasta = Tiempo.guardar(lunes.plusWeeks(1))
         val lista = mutableListOf<ResumenCategoria>()
@@ -73,5 +74,27 @@ class EventoDao(ctx: Context) {
             while (c.moveToNext()) lista.add(ResumenCategoria(c.getInt(0), c.getString(1), c.getLong(2)))
         }
         return lista
+    }
+
+    fun listarSemana(lunes: LocalDateTime): List<Evento> {
+        val lista = mutableListOf<Evento>()
+        helper.readableDatabase.rawQuery(
+            "$base WHERE e.fin IS NOT NULL AND e.inicio >= ? AND e.inicio < ? ORDER BY e.inicio DESC",
+            arrayOf(Tiempo.guardar(lunes), Tiempo.guardar(lunes.plusWeeks(1)))
+        ).use { c ->
+            while (c.moveToNext()) lista.add(leer(c))
+        }
+        return lista
+    }
+
+    fun semanasConEventos(limite: LocalDateTime): List<LocalDate> {
+        val semanas = sortedSetOf<LocalDate>()
+        helper.readableDatabase.rawQuery(
+            "SELECT DISTINCT substr(inicio, 1, 10) FROM evento WHERE fin IS NOT NULL AND inicio < ?",
+            arrayOf(Tiempo.guardar(limite))
+        ).use { c ->
+            while (c.moveToNext()) semanas.add(Tiempo.lunesDe(LocalDate.parse(c.getString(0))))
+        }
+        return semanas.toList()
     }
 }

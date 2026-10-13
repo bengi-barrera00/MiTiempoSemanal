@@ -15,4 +15,9 @@ data class Evento(
     val fin: String? = null,
     val segundos: Long? = null
 )
-data class ResumenCategoria(val id: Int, val nombre: String, val segundos: Long)
+data class ResumenCategoria(
+    val id: Int,
+    val nombre: String,
+    val segundos: Long,
+    val porcentaje: Double = 0.0
+)

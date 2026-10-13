@@ -19,13 +19,15 @@ object Tiempo {
     fun leer(s: String): LocalDateTime = LocalDateTime.parse(s, ISO)
     fun mostrar(f: LocalDateTime): String = f.format(VISTA)
 
-    fun inicioSemana(): LocalDateTime =
-        LocalDate.now().with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY)).atStartOfDay()
+    fun lunesDe(f: LocalDate): LocalDate =
+        f.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY))
 
-    fun rangoSemana(): String {
-        val lunes = inicioSemana().toLocalDate()
-        return "${lunes.format(DIA)} – ${lunes.plusDays(6).format(DIA)}"
-    }
+    fun inicioSemana(): LocalDateTime = lunesDe(LocalDate.now()).atStartOfDay()
+
+    fun rangoDe(lunes: LocalDate): String =
+        "${lunes.format(DIA)} – ${lunes.plusDays(6).format(DIA)}"
+
+    fun rangoSemana(): String = rangoDe(inicioSemana().toLocalDate())
 
     fun duracion(seg: Long): String {
         val h = seg / 3600

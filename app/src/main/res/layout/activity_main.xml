@@ -78,4 +78,24 @@
                 android:textColor="@color/texto_suave" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardReportes"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:cardBackgroundColor="@color/superficie" app:cardCornerRadius="20dp"
+        app:cardElevation="0dp" app:strokeColor="@color/borde" app:strokeWidth="1dp">
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="20dp">
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/reportes" android:textColor="@color/texto"
+                android:textSize="20sp" android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" android:text="@string/reportes_desc"
+                android:textColor="@color/texto_suave" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
